@@ -1,0 +1,950 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Read JSON</title>
+    <meta charset='utf-8' />
+      <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      <!-- hichart -->
+      <script src="https://code.highcharts.com/highcharts.js"></script>
+      <script src="https://code.highcharts.com/modules/series-label.js"></script>
+      <script src="https://code.highcharts.com/modules/exporting.js"></script>
+
+</head>
+<body style="background-color: gray">
+<div class="container"">
+  </br>
+  <div id="system_for_api"></div></br>
+  <div id="tawung"></div></br>
+  <div id="chaojed"></div></br>
+  <div id="bangrakum"></div></br>
+  <div id="phophraya"></div></br>
+  <div id="pamok"></div></br>
+  <div id="pakhai"></div></br>
+  <div id="bangban"></div></br>
+  <div id="bangkung"></div></br>
+  <div id="bangkum"></div></br>
+  <div id="pasak"></div></br>
+  <div id="chiangrak"></div></br>
+</div>
+<script type="text/javascript">
+
+function datechange(d) {
+  var data = d.split('/');
+  return new Date(data[2]+'-'+data[1]+'-'+data[0]);
+}
+
+$.getJSON("http://water.rid.go.th/hwm/wmoc/readjson", function(json) {
+      /*console.log(json);
+      console.log(json.valueRanges); // access the response object
+      console.log(json.valueRanges.length);*/
+      var date;
+      var obj = [];
+      var all = [],       // รวมน้ำในทุ่ง 13 ทุ่ง
+          tawung = [],    // ทุ่งท่าวุ้ง
+          chaojed = [],   // ทุ่งเจ้าเจ็ด
+          bangrakum = [], // ทุ่งบางระกำ
+          phophraya = [], // โครงการฯโพธิ์พระยา
+          pamok = [],     // ทุ่งป่าโมก
+          pakhai = [],    // ทุ่งผักไห่
+          bangban = [],   // ทุ่งบางบาน-บ้านแพน
+          bangkung = [],   // ทุ่งบางกุ้ง
+          bangkum = [],   // ทุ่งบางกุ่ม
+          pasak = [],   // ทุ่งฝั่งซ้าย คลองชัยนาท-ป่าสัก
+          chiangrak = [];  // ทุ่งเชียงราก
+
+        for (i = 0; i < json.valueRanges[0].values.length; i++) {    
+          var result = json.valueRanges[0].values[i];
+          date = datechange(result[0]);
+          obj.push(result);
+          if(date.getTime() <= new Date().getTime()){
+              all.push(parseFloat(result[1]));
+              tawung.push(parseFloat(result[2]));
+              chaojed.push(parseFloat(result[3]));
+              bangrakum.push(parseFloat(result[4]));
+              phophraya.push(parseFloat(result[5]));
+              pamok.push(parseFloat(result[6]));
+              pakhai.push(parseFloat(result[7]));
+              bangban.push(parseFloat(result[10]));
+              bangkung.push(parseFloat(result[11]));
+              bangkum.push(parseFloat(result[12]));
+              pasak.push(parseFloat(result[13]));
+              chiangrak.push(parseFloat(result[14]));
+          }
+        }
+      //console.log(date);
+      //console.log(obj);
+
+  Highcharts.chart('system_for_api', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่ง, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      min: Date.UTC(2017,10,1),
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 400,
+        plotLines: [{
+            value: 439,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 439 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+
+    series: [{
+        name: 'ปริมาณน้ำในทุ่ง',
+        data: all,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+/* ทุ่งท่าวุ้ง */
+
+  Highcharts.chart('tawung', {
+  title: {
+      text: 'ปริมาณน้ำในทุ่งท่าวุ้ง, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+  },
+
+  subtitle: {
+      text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+  },
+
+  xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 0,
+        plotLines: [{
+            value: 22,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 22 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งท่าวุ้ง',
+        data: tawung,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+  /* ทุ่งเจ้าเจ็ด */
+  Highcharts.chart('chaojed', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งเจ้าเจ็ด, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 100,
+        plotLines: [{
+            value: 112,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 112 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งเจ้าเจ็ด',
+        data: chaojed,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+/* ทุ่งบางระกำ */
+  Highcharts.chart('bangrakum', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งบางระกำ, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 90,
+        plotLines: [{
+            value: 100,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 100 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งบางระกำ',
+        data: bangrakum,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+  /* โครงการฯโพธิ์พระยา */
+  Highcharts.chart('phophraya', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งโครงการฯโพธิ์พระยา, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 40,
+        plotLines: [{
+            value: 42,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 42 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'โครงการฯโพธิ์พระยา',
+        data: phophraya,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+  /* ทุ่งป่าโมก */
+  Highcharts.chart('pamok', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งป่าโมก, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 5,
+        plotLines: [{
+            value: 6,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 6 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งป่าโมก',
+        data: pamok,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 500
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+  /* ทุ่งผักไห่ */
+  Highcharts.chart('pakhai', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งผักไห่, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 30,
+        plotLines: [{
+            value: 40,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 40 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งผักไห่',
+        data: pakhai,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 600
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+  /* ทุ่งบางบาล-บ้านแพน */
+  Highcharts.chart('bangban', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งบางบาล-บ้านแพน, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 15,
+        plotLines: [{
+            value: 16,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 16 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งบางบาล-บ้านแพน',
+        data: bangban,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 600
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+  /* ทุ่งบางกุ้ง */
+  Highcharts.chart('bangkung', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งบางกุ้ง, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 5,
+        plotLines: [{
+            value: 8,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 8 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งบางกุ้ง',
+        data: bangkung,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 600
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+  /* ทุ่งบางกุ่ม */
+  Highcharts.chart('bangkum', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งบางกุ่ม, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 30,
+        plotLines: [{
+            value: 40,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 40 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งบางกุ่ม',
+        data: bangkum,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 600
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+  /* ทุ่งฝั่งซ้าย คลองชัยนาท-ป่าสัก */
+  Highcharts.chart('pasak', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งฝั่งซ้าย คลองชัยนาท-ป่าสัก, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 30,
+        plotLines: [{
+            value: 35,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 35 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งฝั่งซ้าย คลองชัยนาท-ป่าสัก',
+        data: pasak,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 600
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+  /* ทุ่งเชียงราก */
+  Highcharts.chart('chiangrak', {
+    title: {
+        text: 'ปริมาณน้ำในทุ่งเชียงราก, ณ วันที่ 30 ตุลาคม 2560 - 31 มกราคม 2561'
+    },
+
+    subtitle: {
+        text: 'ข้อมูลจาก: Google sheet การระบายน้ำออกจากทุ่ง'
+    },
+
+    xAxis: {
+      type: 'datetime',
+      labels: {
+        format: '{value:%Y-%m-%d}',
+        rotation: 45,
+        align: 'left'
+      }
+    },
+
+    yAxis: {
+        title: {
+            text: 'ปริมาณน้ำในทุ่ง (ล้าน ลบ.ม.)'
+        },
+        min: 15,
+        plotLines: [{
+            value: 18,
+            color: 'green',
+            dashStyle: 'shortdash',
+            width: 2,
+            label: {
+                text: 'ปริมาณน้ำที่ต้องการเหลือค้างทุ่ง 18 ล้าน ลบ.ม.'
+            }
+        }]
+    },
+
+    legend: {
+      layout: 'vertical',
+      align: 'right',
+      verticalAlign: 'middle'
+    },
+
+    plotOptions: {
+        spline: {
+            marker: {
+                enabled: true
+            }
+        }
+    },
+
+    series: [{
+        name: 'ทุ่งเชียงราก',
+        data: chiangrak,
+        pointStart: Date.UTC(2017,9,30),
+        pointInterval: 24 * 3600 * 1000 // one day
+    }],
+
+    responsive: {
+      rules: [{
+          condition: {
+              maxWidth: 600
+          },
+          chartOptions: {
+              legend: {
+                  layout: 'horizontal',
+                  align: 'center',
+                  verticalAlign: 'bottom'
+              }
+          }
+      }]
+    }
+  });
+
+}); /* geetJson end */
+
+</script>
+
+</body>
+</html>

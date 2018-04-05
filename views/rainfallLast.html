@@ -1,0 +1,169 @@
+{%extends "_baseRainWater.html"%}
+{%block content%}
+
+<div ng-controller="Myctrl">
+
+	<div class="col-lg-12">
+	<h1>Rainfall Last</h1>
+		<div class="col-md-8">
+		  <div class="input-group">
+		      <span class="input-group-addon">url</span>
+		      <input type="text" class="form-control" ng-model="url">
+			  <span class="input-group-btn">
+		        <button class="btn btn-secondary" type="button" ng-click="fetchData()">Search</button>
+		      </span>
+    	  </div>  
+		</div>
+	<div class="col-md-4">
+	  <div class="input-group">
+	      <span class="input-group-addon">คู่มือสำหรับ url</span>
+		  <span class="input-group-btn">
+	        <a href="download/url.xlsx" class="btn btn-info" role="button">Download </a>
+	      </span>
+	  </div>  
+	</div>
+	</br>
+	</br>
+	<hr>
+
+	<!--<div class="table-responsive">-->
+    <table class="table" id="rainfall" name="rainfall">
+    <thead>
+    <tr>
+
+		<th>Lat</th>
+		<th>Long</th>
+		<th>id </th>
+		<th>telestation_id</th>
+		<th>telestation_datetime</th>
+		<th>rainfall_today</th>
+		<th>rainfall_1h</th>
+		<th>rainfall_24h</th>
+		<th>update_datetime</th>
+		<th>old_id</th>
+		<th>name</th>
+		<th>anch</th>
+		<th>anch_id</th>
+		<th>left_bank</th>
+		<th>right_bank</th>
+		<th>geocode_basin</th>
+		<th>ground_level</th>
+		<th>district_id</th>
+		<th>district</th>
+		<th>amphoe_id</th>
+		<th>amphoe</th>
+		<th>province_id</th>
+		<th>province</th>
+		<th>area_factor</th>
+	</tr>
+	</thead>
+
+    {%verbatim%}
+    <tr ng-repeat="objs in obj.features" >
+        <!--<td>{{objs.geometry.coordinates[1]}}</td>
+		<td>{{objs.geometry.coordinates[0]}}</td>
+		<td>{{objs.properties.id }}</td>
+		<td>{{objs.properties.telestation_id}}</td>
+		<td>{{objs.properties.telestation_datetime}}</td>
+		<td>{{objs.properties.rainfall_today}}</td>
+		<td>{{objs.properties.rainfall_1h}}</td>
+		<td>{{objs.properties.rainfall_24h}}</td>
+		<td>{{objs.properties.update_datetime}}</td>
+		<td>{{objs.properties.old_id}}</td>
+		<td>{{objs.properties.name}}</td>
+		<td>{{objs.properties.anch}}</td>
+		<td>{{objs.properties.anch_id}}</td>
+		<td>{{objs.properties.left_bank}}</td>
+		<td>{{objs.properties.right_bank}}</td>
+		<td>{{objs.properties.geocode_basin}}</td>
+		<td>{{objs.properties.ground_level}}</td>
+		<td>{{objs.properties.district_id}}</td>
+		<td>{{objs.properties.district}}</td>
+		<td>{{objs.properties.amphoe_id}}</td>
+		<td>{{objs.properties.amphoe}}</td>
+		<td>{{objs.properties.province_id}}</td>
+		<td>{{objs.properties.province}}</td>
+		<td>{{objs.properties.area_factor}}</td>-->
+    </tr>
+    {%endverbatim%}
+    </table>
+    <!--</div>-->
+    </div>
+</div>
+
+
+ 
+<script type="text/javascript">
+
+var app = angular.module("myApp",[]);
+app.controller("Myctrl", function($scope,$http) {
+
+var dataTableObj = [];
+var datatable = $('#rainfall').DataTable( {
+		data:dataTableObj,
+		"pagingType": "full_numbers",
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ]
+      }); 
+
+$scope.url;
+//$scope.url;
+$scope.fetchData = function(){
+	$http({
+  method: 'GET',
+  url: $scope.url
+}).then(function(response) {
+	$scope.obj = response.data;
+	var dataTableObj = [];
+	var log = [];
+	angular.forEach($scope.obj.features, function(value, key) {
+	  console.info('value :',value );
+	  var row = [];
+		row.push(value.geometry.coordinates[1]);
+		row.push(value.geometry.coordinates[0]);
+		row.push(value.properties.id );
+		row.push(value.properties.telestation_id);
+		row.push(value.properties.telestation_datetime);
+		row.push(value.properties.rainfall_today);
+		row.push(value.properties.rainfall_1h);
+		row.push(value.properties.rainfall_24h);
+		row.push(value.properties.update_datetime);
+		row.push(value.properties.old_id);
+		row.push(value.properties.name);
+		row.push(value.properties.anch);
+		row.push(value.properties.anch_id);
+		row.push(value.properties.left_bank);
+		row.push(value.properties.right_bank);
+		row.push(value.properties.geocode_basin);
+		row.push(value.properties.ground_level);
+		row.push(value.properties.district_id);
+		row.push(value.properties.district);
+		row.push(value.properties.amphoe_id);
+		row.push(value.properties.amphoe);
+		row.push(value.properties.province_id);
+		row.push(value.properties.province);
+		row.push(value.properties.area_factor);
+
+		dataTableObj.push(row);
+		//console.log(dataTableObj);
+	}, log);
+
+	 datatable.destroy();
+	 datatable = $('#rainfall').DataTable( {
+		data:dataTableObj,
+		"pagingType": "full_numbers",
+	    dom: 'Bfrtip',
+	    buttons: [
+	        'copy', 'csv', 'excel', 'pdf', 'print'
+	    ]
+	  });
+
+	
+});
+};
+
+});
+</script>
+{%endblock%}

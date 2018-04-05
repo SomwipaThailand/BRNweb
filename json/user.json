@@ -1,0 +1,12 @@
+{
+  "users": {
+    "bird50": {
+      "name": "sira Lovelace",
+      "contacts": { "ghopper": true }
+    },
+    "bird50_2": {
+      "name": "pee Lovelace",
+      "contacts": { "ghopper": true }
+    }
+  }
+}

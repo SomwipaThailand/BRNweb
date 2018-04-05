@@ -1,0 +1,7 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)\?*$ index.php?__route__=/$1 [L,QSA]
+AddDefaultCharset utf-8
+#RewriteRule ^.+\.(jpg|jpeg|gif|png|ico|css|js|swf)$ static/$0 [L]
+
