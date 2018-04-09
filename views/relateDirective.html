@@ -1,149 +1,225 @@
 {%extends "_base2.html"%} {%block details%}
 <div class="product" id="product">
     <div class="container">
-        <div class="product-top">
-            <div class="col-md-12 product-left heading">
-                <h3 class="tittle new">คำสั่ง คสช.</h3>
-                <ul style="margin-top:0%">
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directiveGov46-2560.pdf" target="_blank">คำสั่ง 46/2560 เรื่อง การจัดตั้งสำนักงานบริหารจัดการทรัพยากรน้ำแห่งชาติ</a>
-                        <a class="blink" style="color: red">NEW</a>
+        <div class="grid_3 grid_5 wow fadeInLeft animated" data-wow-delay=".5s">
+            <div class="bs-example bs-example-tabs" role="tabpanel" data-example-id="togglable-tabs">
+                <ul id="myTab" class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                        <a href="#prof" id="home-tab" role="tab" data-toggle="tab" aria-controls="home" aria-expanded="true">คำสั่ง คสช.</a>
                     </li>
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directiveGov2-2561.pdf" target="_blank">คำสั่ง 2/2561 เรื่อง การจัดสรรภารกิจและบุคลากรของสำนักงานทรัพยากรน้ำแห่งชาติ</a>
-                        <a class="blink" style="color: red">NEW</a>
+                    <li role="presentation">
+                        <a href="#human" role="tab" id="profile-tab" data-toggle="tab" aria-controls="human">ประกาศสำนักนายกรัฐมนตรี</a>
                     </li>
-                    <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
+                    <li role="presentation">
+                        <a href="#profile" role="tab" id="profile-tab" data-toggle="tab" aria-controls="profile">คำสั่งสำนักนายกรัฐมนตรี</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#water2" role="tab" id="profile-tab" data-toggle="tab" aria-controls="water2">กฎกระทรวง</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#water3" role="tab" id="profile-tab" data-toggle="tab" aria-controls="water3">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#water4" role="tab" id="profile-tab" data-toggle="tab" aria-controls="water4">คำสั่งสำนักงานทรัพยากรน้ำแห่งชาติ</a>
+                    </li>
+                    <li role="presentation">
+                        <a href="#water5" role="tab" id="profile-tab" data-toggle="tab" aria-controls="water5">คำสั่งที่เกี่ยวข้อง</a>
+                    </li>
                 </ul>
+
+                <div id="myTabContent" class="tab-content">
+                    <div role="tabpanel" class="tab-pane fade in active" id="prof" aria-labelledby="home-tab">
+                        <div class="col-md-12 product-right heading">
+                            <div class="product" id="product">
+                                <div class="container">
+                                    <div class="product-top">
+                                        <div class="col-md-12 product-left heading">
+                                            <ul style="margin-top:0%">
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directiveGov46-2560.pdf" target="_blank">คำสั่ง 46/2560 เรื่อง การจัดตั้งสำนักงานบริหารจัดการทรัพยากรน้ำแห่งชาติ</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directiveGov2-2561.pdf" target="_blank">คำสั่ง 2/2561 เรื่อง การจัดสรรภารกิจและบุคลากรของสำนักงานทรัพยากรน้ำแห่งชาติ</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- staff -->
+                    <div role="tabpanel" class="tab-pane fade" id="human" aria-labelledby="human">
+                        <div class="col-md-12 product-right heading">
+                            <div class="product" id="product">
+                                <div class="container">
+                                    <div class="product-top">
+                                        <div class="col-md-12 product-left heading">
+                                            <ul style="margin-top:0%">
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directivePrimeMinisterAuthurizeWaterResource1-2561.pdf" target="_blank">ประกาศสำนักนายกรัฐมนตรี เรื่อง ให้ข้าราชการ พนักงานราชการ และลูกจ้างประจำของกรมชลประทาน
+                                                        และกรมทรัพยากรน้ำ มาปฏิบัติราชการหรือปฏิบัติงานในสำนักงานทรัพยากรน้ำแห่งชาติ
+                                                        ฉบับที่ 1</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- กลุ่มบริหารจัดการลุ่มน้ำ ๑ -->
+                    <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                        <div class="col-md-12 product-right heading">
+                            <div class="product" id="product">
+                                <div class="container">
+                                    <div class="product-top">
+                                        <div class="col-md-12 product-left heading">
+                                            <ul style="margin-top:0%">
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directivePrimeMinister24-2561.pdf" target="_blank">คำสั่งสำนักนายกรัฐมนตรี ที่ 24/2561 เรื่องแต่งตั้งคณะกรรมการทรัพยากรน้ำแห่งชาติ</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- กลุ่มบริหารจัดการลุ่มน้ำ ๑ -->
+
+                    <!-- กลุ่มบริหารจัดการลุ่มน้ำ ๒ -->
+                    <div role="tabpanel" class="tab-pane fade" id="water2" aria-labelledby="profile-tab">
+                        <div class="col-md-12 product-right heading">
+
+                            <div class="product" id="product">
+                                <div class="container">
+                                    <div class="product-top">
+                                        <div class="col-md-12 product-left heading">
+                                            <ul style="margin-top:0%">
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/regularityMinistry.pdf" target="_blank">กฎกระทรวงแบ่งส่วนราชการสำนักงานทรัพยากรน้ำแห่งชาติ สำนักนายกรัฐมนตรี
+                                                        พ.ศ. 2561</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- กลุ่มบริหารจัดการลุ่มน้ำ ๒ -->
+
+                    <!-- กลุ่มบริหารจัดการลุ่มน้ำ ๓ -->
+                    <div role="tabpanel" class="tab-pane fade" id="water3" aria-labelledby="profile-tab">
+                        <div class="col-md-12 product-right heading">
+                            <div class="product" id="product">
+                                <div class="container">
+                                    <div class="product-top">
+                                        <div class="col-md-12 product-left heading">
+                                            <ul style="margin-top:0%">
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directiveWaterResource2_2561.pdf" target="_blank">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ ที่ 2/2561 เรื่อง แต่งตั้งคณะอนุกรรมการยุทธศาสตร์การบริหารจัดการทรัพยากรน้ำ</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directiveWaterResource3_2561.pdf" target="_blank">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ ที่ 3/2561 เรื่อง แต่งตั้งคณะอนุกรรมการกลั่นกรอง
+                                                        วิเคราะห์โครงการ และติดตามประเมินผลการบริหารจัดการทรัพยากรน้ำ
+                                                    </a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directiveWaterResource4_2561.pdf" target="_blank">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ ที่ 4/2561 เรื่อง แต่งตั้งคณะอนุกรรมการวิเคราะห์ติดตามสถานการณ์และการบริหารจัดการทรัพยากรน้ำ</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directiveWaterResource5_2561.pdf" target="_blank">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ ที่ 5/2561 เรื่อง แต่งตั้งคณะอนุกรรมการขับเคลื่อนโครงการขนาดใหญ่และโครงการสำคัญ</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- กลุ่มบริหารจัดการลุ่มน้ำ ๓ -->
+
+                    <!-- กลุ่มบริหารจัดการลุ่มน้ำ ๔ -->
+                    <div role="tabpanel" class="tab-pane fade" id="water4" aria-labelledby="profile-tab">
+                        <div class="col-md-12 product-right heading">
+
+                            <div class="product" id="product">
+                                <div class="container">
+                                    <div class="product-top">
+                                        <div class="col-md-12 product-left heading">
+                                            <ul style="margin-top:0%">
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directiveWaterResourceOffice-determinInternalUnit.pdf" target="_blank">คำสั่งสำนักงานทรัพยากรน้ำแห่งชาติ ที่ 1_2561 เรื่อง การกำหนดหน่วยงานภายในและแบ่งหน้าที่ความรับผิดชอบของหน่วยงานภายใน</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directiveWaterResourceOffice-assignToEmp.pdf" target="_blank">คำสั่งสำนักงานทรัพยากรน้ำแห่งชาติ ที่ ข 1_2561 เรื่อง มอบหมายให้ข้าราชการ
+                                                        ลูกจ้างประจำ และพนักงานราชการปฏิบัติหน้าที่ราชการ</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div role="tabpanel" class="tab-pane fade" id="water5" aria-labelledby="profile-tab">
+                        <div class="col-md-12 product-right heading">
+                            <div class="product" id="product">
+                                <div class="container">
+                                    <div class="product-top">
+                                        <div class="col-md-12 product-left heading">
+                                            <ul style="margin-top:0%">
+                                                <li>
+                                                    <i class="glyphicon glyphicon-arrow-right"></i>
+                                                    <a href="planing/directive/directiveDeliverPublicServant.pdf" target="_blank">คำสั่งส่งตัวข้าราชการ ลูกจ้างประจำ และพนักงานราชการ จำนวน 55 ราย ไปปฏิบัติราชการหรือปฏิบัติงานในสำนักงานทรัพยากรน้ำแห่งชาติ</a>
+                                                    <a class="blink" style="color: red">NEW</a>
+                                                </li>
+                                                <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<div class="product" id="product" style="background-color:#DEE2E3;">
-    <div class="container">
-        <div class="product-top">
-            <div class="col-md-12 product-left heading">
-                <h3 class="tittle new">ประกาศสำนักนายกรัฐมนตรี </h3>
-                <ul style="margin-top:0%">
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directivePrimeMinisterAuthurizeWaterResource1-2561.pdf" target="_blank">ประกาศสำนักนายกรัฐมนตรี เรื่อง ให้ข้าราชการ พนักงานราชการ และลูกจ้างประจำของกรมชลประทาน และกรมทรัพยากรน้ำ
-                            มาปฏิบัติราชการหรือปฏิบัติงานในสำนักงานทรัพยากรน้ำแห่งชาติ ฉบับที่ 1</a>
-                        <a class="blink" style="color: red">NEW</a>
-                    </li>
-                    <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="product" id="product">
-    <div class="container">
-        <div class="product-top">
-            <div class="col-md-12 product-left heading">
-                <h3 class="tittle new">คำสั่งสำนักนายกรัฐมนตรี</h3>
-                <ul style="margin-top:0%">
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directivePrimeMinister24-2561.pdf" target="_blank">คำสั่งสำนักนายกรัฐมนตรี ที่ 24/2561 เรื่องแต่งตั้งคณะกรรมการทรัพยากรน้ำแห่งชาติ</a>
-                        <a class="blink" style="color: red">NEW</a>
-                    </li>
-                    <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="product" id="product" style="background-color:#DEE2E3;">
-    <div class="container">
-        <div class="product-top">
-            <div class="col-md-12 product-left heading">
-                <h3 class="tittle new">กฎกระทรวง</h3>
-                <ul style="margin-top:0%">
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/regularityMinistry.pdf" target="_blank">กฎกระทรวงแบ่งส่วนราชการสำนักงานทรัพยากรน้ำแห่งชาติ สำนักนายกรัฐมนตรี พ.ศ. 2561</a>
-                        <a class="blink" style="color: red">NEW</a>
-                    </li>
-                    <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="product" id="product">
-    <div class="container">
-        <div class="product-top">
-            <div class="col-md-12 product-left heading">
-                <h3 class="tittle new">คำสั่งสำนักงานทรัพยากรน้ำแห่งชาติ</h3>
-                <ul style="margin-top:0%">
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directiveWaterResourceOffice-determinInternalUnit.pdf" target="_blank">คำสั่งสำนักงานทรัพยากรน้ำแห่งชาติ ที่ 1_2561 เรื่อง การกำหนดหน่วยงานภายในและแบ่งหน้าที่ความรับผิดชอบของหน่วยงานภายใน</a>
-                        <a class="blink" style="color: red">NEW</a>
-                    </li>
-                    <li>
-                            <i class="glyphicon glyphicon-arrow-right"></i>
-                            <a href="planing/directive/directiveWaterResourceOffice-assignToEmp.pdf" target="_blank">คำสั่งสำนักงานทรัพยากรน้ำแห่งชาติ ที่ ข 1_2561 เรื่อง มอบหมายให้ข้าราชการ ลูกจ้างประจำ และพนักงานราชการปฏิบัติหน้าที่ราชการ</a>
-                            <a class="blink" style="color: red">NEW</a>
-                        </li>
-                    <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="product" id="product" style="background-color:#DEE2E3;">
-    <div class="container">
-        <div class="product-top">
-            <div class="col-md-12 product-left heading">
-                <h3 class="tittle new">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ</h3>
-                <ul style="margin-top:0%">
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directiveWaterResource2_2561.pdf" target="_blank">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ ที่ 2/2561 เรื่อง แต่งตั้งคณะอนุกรรมการยุทธศาสตร์การบริหารจัดการทรัพยากรน้ำ</a>
-                        <a class="blink" style="color: red">NEW</a>
-                    </li>
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directiveWaterResource3_2561.pdf" target="_blank">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ ที่ 3/2561 เรื่อง แต่งตั้งคณะอนุกรรมการกลั่นกรอง วิเคราะห์โครงการ
-                            และติดตามประเมินผลการบริหารจัดการทรัพยากรน้ำ
-                        </a>
-                        <a class="blink" style="color: red">NEW</a>
-                    </li>
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directiveWaterResource4_2561.pdf" target="_blank">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ ที่ 4/2561 เรื่อง แต่งตั้งคณะอนุกรรมการวิเคราะห์ติดตามสถานการณ์และการบริหารจัดการทรัพยากรน้ำ</a>
-                        <a class="blink" style="color: red">NEW</a>
-                    </li>
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directiveWaterResource5_2561.pdf" target="_blank">คำสั่งคณะกรรมการทรัพยากรน้ำแห่งชาติ ที่ 5/2561 เรื่อง แต่งตั้งคณะอนุกรรมการขับเคลื่อนโครงการขนาดใหญ่และโครงการสำคัญ</a>
-                        <a class="blink" style="color: red">NEW</a>
-                    </li>
-                    <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="product" id="product">
-    <div class="container">
-        <div class="product-top">
-            <div class="col-md-12 product-left heading">
-                <h3 class="tittle new">คำสั่งที่เกี่ยวข้อง</h3>
-                <ul style="margin-top:0%">
-                    <li>
-                        <i class="glyphicon glyphicon-arrow-right"></i>
-                        <a href="planing/directive/directiveDeliverPublicServant.pdf" target="_blank">คำสั่งส่งตัวข้าราชการ ลูกจ้างประจำ และพนักงานราชการ จำนวน 55 ราย ไปปฏิบัติราชการหรือปฏิบัติงานในสำนักงานทรัพยากรน้ำแห่งชาติ</a>
-                        <a class="blink" style="color: red">NEW</a>
-                    </li>
-                    <!-- <a href="bulletin.html" class="hvr-shutter-in-horizontal" target="_blank">อ่านทั้งหมด</a> -->
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
+
+
+
 {%endblock%}
