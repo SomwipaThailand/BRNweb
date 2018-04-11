@@ -16,7 +16,7 @@ getRoute()->post('/renderjson', array('Agrox_template','renderjson'));
 
 //********** set var via config here
 //getConfig()->set('baseurl','http://localhost/example/test/');
-getConfig()->set('baseurl','http://water.rid.go.th/hwm/wmoc/');
+getConfig()->set('baseurl','http://water.rid.go.th/hwm/wmoc/test/BRNweb');
 getConfig()->set('static_template_path','static/assets/');
 getConfig()->set('static_path','views');
 getConfig()->set('project_name','ฝ่ายจัดสรรน้ำ');
